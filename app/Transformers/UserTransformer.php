@@ -17,9 +17,13 @@ class UserTransformer extends TransformerAbstract
     public function transform(User $user): array
     {
         return [
-            'id' => $user->id,
+            'id' => $user->id_user,
             'name' => $user->name,
-            'email' => $user->email,
+            'email' => $user->username,
+            'type' => $user->type,
+            'phone' => $user->notelepon,
+            'status' => $user->Status,
+
         ];
     }
 }

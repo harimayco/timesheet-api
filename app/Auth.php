@@ -5,6 +5,7 @@ namespace App;
 use App\Exceptions\UnauthorizedException;
 use App\Transformers\TokenTransformer;
 use App\Transformers\UserTransformer;
+use App\Models\User;
 
 class Auth
 {
@@ -18,7 +19,11 @@ class Auth
      */
     public function authenticateByEmailAndPassword(string $email, string $password): array
     {
-        if (!$token = app('auth')->attempt(compact('email', 'password'))) {
+        $user = User::where(['username'=> $email, 'pass' => $password])->first();
+        if(!$user){
+            throw new UnauthorizedException();
+        }
+        if (!$token = app('auth')->fromUser($user)) {
             throw new UnauthorizedException();
         }
 

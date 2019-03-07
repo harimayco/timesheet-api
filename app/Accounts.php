@@ -26,6 +26,16 @@ class Accounts
         return fractal($users, new UserTransformer())->toArray();
     }
 
+    public function getStaffList(Request $request): array
+    {
+        $users = User::filter($request)->where([
+            ['type', '<>', 'Admin'],
+            ['Status', '=', '1']
+        ])->orderBy('name', 'asc')->get();
+
+        return fractal($users, new UserTransformer())->toArray();
+    }
+
     /**
      * Get a user by ID.
      *

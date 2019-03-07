@@ -32,6 +32,17 @@ class UserController extends Controller
         return response()->json($users, Response::HTTP_OK);
     }
 
+    public function staffList(Request $request): JsonResponse
+    {
+        $users = $this->accounts->getStaffList($request);
+        return response()->json($users, Response::HTTP_OK);
+    }
+
+    public function getMe(Request $request): JsonResponse
+    {
+        $user = app('auth')->user();
+        return response()->json($user, Response::HTTP_OK);
+    }
     /**
      * Store a user.
      *

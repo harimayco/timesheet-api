@@ -24,14 +24,20 @@ $router->get('/', function () use ($router) {
 });
 
 $router->post('/auth', 'AuthController@store');
+
 $router->group(['middleware' => 'auth:api', 'prefix' => 'auth'], function ($router) {
     $router->get('/', 'AuthController@show');
     $router->put('/', 'AuthController@update');
     $router->delete('/', 'AuthController@destroy');
 });
 
+$router->group(['middleware' => 'auth:api'], function ($router) {
+    $router->get('/staff-list', 'UserController@staffList');
+});
+
 $router->group(['middleware' => 'auth:api', 'prefix' => 'users'], function ($router) {
     $router->get('/', 'UserController@index');
+    $router->get('/me', 'UserController@getMe');
     $router->post('/', 'UserController@store');
     $router->get('/{id:[0-9]+}', 'UserController@show');
     $router->put('/{id:[0-9]+}', 'UserController@update');

@@ -16,13 +16,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
 {
     use Authenticatable, Authorizable, QueryFilterable, ModelValidable, AttributeHashable;
 
+    protected $table = 'av_user';
+    protected $primaryKey = 'id_user';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'password', 'passwd', 'pass', 'notelepon', 'type', 'username', 'over', 'lastlog', 'Status'
     ];
 
     /**
@@ -31,26 +34,9 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password',
+        'password', 'passwd', 'pass'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $visible = [
-        'id', 'name', 'email',
-    ];
-
-    /**
-     * The fields that should be filterable by query.
-     *
-     * @var array
-     */
-    protected $filterable = [
-        'name', 'email',
-    ];
 
     /**
      * Hash the attributes before saving.
@@ -58,7 +44,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hashable = [
-        'password',
+        'passwd',
     ];
 
     /**
@@ -100,4 +86,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return [];
     }
+
+    public function getAuthPassword()
+    {
+        return $this->passwd;
+    }
+    
 }

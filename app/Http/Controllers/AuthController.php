@@ -30,7 +30,7 @@ class AuthController extends Controller
     public function store(Request $request): JsonResponse
     {
         $token = $this->auth->authenticateByEmailAndPassword(
-            $request->input('email'),
+            $request->input('username'),
             $request->input('password')
         );
 
