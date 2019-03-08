@@ -86,6 +86,14 @@ class UserController extends Controller
         return response()->json($user, Response::HTTP_OK);
     }
 
+    public function updateMe(Request $request): JsonResponse
+    {
+        $id = app('auth')->user()->id_user;
+        $user = $this->accounts->updateUserById($id, $request->all());
+
+        return response()->json($user, Response::HTTP_OK);
+    }
+
     /**
      * Delete a user.
      *

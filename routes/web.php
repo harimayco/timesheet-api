@@ -38,6 +38,7 @@ $router->group(['middleware' => 'auth:api'], function ($router) {
 $router->group(['middleware' => 'auth:api', 'prefix' => 'users'], function ($router) {
     $router->get('/', 'UserController@index');
     $router->get('/me', 'UserController@getMe');
+    $router->put('/me', 'UserController@updateMe');
     $router->post('/', 'UserController@store');
     $router->get('/{id:[0-9]+}', 'UserController@show');
     $router->put('/{id:[0-9]+}', 'UserController@update');

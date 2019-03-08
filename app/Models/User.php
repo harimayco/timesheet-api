@@ -55,15 +55,15 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function rules(): array
     {
         return [
-            '*' => [
+            /*'*' => [
                 'name' => 'required',
                 'email' => 'required|unique:users,email',
                 'password' => 'required|min:6',
-            ],
-            'UPDATE' => [
-                'email' => 'required|unique:users,email,' . $this->id,
-                'password' => 'sometimes|min:6',
-            ],
+            ],*/
+            //'UPDATE' => [
+                //'email' => 'required|unique:users,email,' . $this->id_user,
+                //'password' => 'sometimes|min:6',
+            //],
         ];
     }
 
