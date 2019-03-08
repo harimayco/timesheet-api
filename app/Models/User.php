@@ -25,7 +25,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $fillable = [
-        'name', 'password', 'passwd', 'pass', 'notelepon', 'type', 'username', 'over', 'lastlog', 'Status'
+        'name', 'password', 'pass', 'notelepon', 'type', 'username', 'over', 'lastlog', 'Status'
     ];
 
     /**
@@ -34,7 +34,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hidden = [
-        'password', 'passwd', 'pass'
+        'password', 'pass'
     ];
 
 
@@ -44,7 +44,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      * @var array
      */
     protected $hashable = [
-        'passwd',
+        'password',
     ];
 
     /**
@@ -87,9 +87,5 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return [];
     }
 
-    public function getAuthPassword()
-    {
-        return $this->passwd;
-    }
     
 }

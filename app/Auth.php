@@ -21,7 +21,7 @@ class Auth
     {
         $user = User::where(['username'=> $email, 'pass' => $password])->first();
         if(!$user){
-            throw new UnauthorizedException();
+            throw new UnauthorizedException('Invalid username or password!');
         }
         if (!$token = app('auth')->fromUser($user)) {
             throw new UnauthorizedException();
